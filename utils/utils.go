@@ -5,6 +5,10 @@ import (
 	"strings"
 )
 
+const (
+	methodSeparator = "-"
+)
+
 func GenerateMethod(apiVersion int, module, handler string, source ...string) string {
 	var builder strings.Builder
 
@@ -26,15 +30,15 @@ func GenerateMethod(apiVersion int, module, handler string, source ...string) st
 
 	if from != "" {
 		builder.WriteString(from)
-		builder.WriteString(":")
+		builder.WriteString(methodSeparator)
 	}
 
 	// 直接写入，避免任何中间的字符串拼接
 	builder.WriteString("v")
 	builder.WriteString(strconv.Itoa(apiVersion))
-	builder.WriteString(":")
+	builder.WriteString(methodSeparator)
 	builder.WriteString(module)
-	builder.WriteString(":")
+	builder.WriteString(methodSeparator)
 	builder.WriteString(handler)
 
 	return strings.ToLower(builder.String())
