@@ -56,9 +56,6 @@ func (h invocationHandlerImpl) GetInvokeFunction(logger types.LoggerProvider) co
 			}
 		}()
 
-		bizCtx := biz.NewFromIncomingGrpcContext(ctx)
-		logger.Debug("xxxxxxxxxxxxxxxx", "bizctx", bizCtx.MetaData().AsGRPCMetaData())
-
 		result, err := h.fn(biz.NewFromIncomingGrpcContext(ctx), event.Data)
 		if err != nil {
 			mInfo := h.module.GetInfo()
