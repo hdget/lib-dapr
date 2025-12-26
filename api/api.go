@@ -26,9 +26,9 @@ type apiImpl struct {
 	ctx context.Context
 }
 
-func New(ctx biz.Context) APIer {
+func New(bizCtx biz.Context) APIer {
 	return &apiImpl{
-		ctx: biz.NewOutgoingGrpcContext(ctx),
+		ctx: biz.NewOutgoingGrpcContext(bizCtx),
 	}
 }
 
